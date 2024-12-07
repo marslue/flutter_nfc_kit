@@ -14,14 +14,17 @@ allprojects {
 group 'im.nfc.flutter_nfc_kit'
 
 android {
-
     namespace 'im.nfc.flutter_nfc_kit'
 
     compileSdkVersion 34
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17" // 明確指定 Kotlin 的 JVM 目標
     }
 
     sourceSets {
@@ -34,6 +37,20 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17) // 使用工具鏈統一設定
+    }
+}
+
+kotlin {
+    jvmToolchain(17) // Kotlin 編譯器工具鏈
+}
+
+ext {
+    KotlinVersion = '1.9.24' // 確保 Kotlin 版本是最新穩定版
 }
 
 dependencies {
